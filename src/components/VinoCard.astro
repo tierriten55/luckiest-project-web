@@ -1,0 +1,60 @@
+---
+import VinoImagen from './VinoImagen.astro';
+import { formatearPrecio, nombreBodega, type Vino } from '../lib/vinos';
+
+interface Props {
+  vino: Vino;
+}
+const { vino } = Astro.props;
+const precio = formatearPrecio(vino.precio);
+const detalle = [vino.cepa, vino.anio].filter(Boolean).join(' · ');
+---
+
+<li class="card" data-reveal>
+  <a href={`/vinos/${vino.slug}`} class="link">
+    <div class="imagen"><VinoImagen vino={vino} /></div>
+    <div class="texto">
+      <p class="eyebrow bodega">{nombreBodega(vino.bodega)}</p>
+      <h3 class="nombre">{vino.nombre}</h3>
+      <p class="detalle">{detalle}</p>
+      <p class:list={['precio', { pendiente: vino.precio == null }]}>{precio}</p>
+    </div>
+  </a>
+</li>
+
+<style>
+  .link {
+    display: grid;
+    gap: 1.1rem;
+  }
+  .imagen :global(.marco > *) { will-change: transform; }
+  .link:hover .imagen :global(.marco > *) { transform: scale(1.035); }
+
+  .texto {
+    display: grid;
+    gap: 0.35rem;
+  }
+  .bodega { font-size: 0.62rem; }
+  .nombre {
+    font-size: clamp(1.2rem, 3.6vw, 1.45rem);
+    font-weight: 500;
+    line-height: 1.15;
+    transition: color 0.35s var(--ease);
+  }
+  .link:hover .nombre { color: #fff7ea; }
+  .detalle {
+    font-size: 0.82rem;
+    color: var(--text-soft);
+  }
+  .precio {
+    margin-top: 0.35rem;
+    font-size: 0.9rem;
+    font-weight: 450;
+    letter-spacing: 0.02em;
+  }
+  .precio.pendiente {
+    font-size: 0.78rem;
+    color: var(--text-faint);
+    font-style: italic;
+  }
+</style>

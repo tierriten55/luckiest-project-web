@@ -1,0 +1,181 @@
+---
+import sitio from '../data/sitio.json';
+import { bodegasPropias } from '../lib/vinos';
+
+const links = [
+  { href: '/#recomendados', label: 'Recomendados' },
+  ...bodegasPropias.map((b) => ({ href: `/#${b.id}`, label: b.nombre })),
+  { href: '/#nosotros', label: 'Nosotros' },
+];
+---
+
+<header class="nav">
+  <div class="nav-inner container">
+    <a class="brand" href="/" aria-label={`${sitio.marca} — inicio`}>{sitio.marca}</a>
+
+    <button class="toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+      <span class="toggle-texto">Menú</span>
+      <span class="toggle-icono" aria-hidden="true"><span></span><span></span></span>
+    </button>
+
+    <nav id="menu-principal" aria-label="Secciones">
+      <ul class="links">
+        {links.map((l) => (
+          <li><a href={l.href}>{l.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('.nav');
+  const boton = header?.querySelector<HTMLButtonElement>('.toggle');
+  const cerrar = () => {
+    header?.classList.remove('abierto');
+    boton?.setAttribute('aria-expanded', 'false');
+  };
+  boton?.addEventListener('click', () => {
+    const abierto = header!.classList.toggle('abierto');
+    boton.setAttribute('aria-expanded', String(abierto));
+  });
+  header?.querySelectorAll('.links a').forEach((a) => a.addEventListener('click', cerrar));
+  document.addEventListener('keydown', (e) => e.key === 'Escape' && cerrar());
+</script>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 84%, transparent);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+    backdrop-filter: blur(14px) saturate(120%);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--nav-h);
+  }
+
+  .brand {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  /* ---- botón (solo mobile) ---- */
+  .toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0 0.6rem 0.75rem;
+    background: none;
+    border: 0;
+    color: var(--text-soft);
+    font: inherit;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .toggle-icono {
+    display: grid;
+    gap: 5px;
+    width: 20px;
+  }
+  .toggle-icono span {
+    display: block;
+    height: 1px;
+    background: currentColor;
+    transition: transform 0.4s var(--ease);
+  }
+  .abierto .toggle-icono span:first-child { transform: translateY(3px) rotate(45deg); }
+  .abierto .toggle-icono span:last-child { transform: translateY(-3px) rotate(-45deg); }
+
+  /* ---- menú desplegable en mobile ---- */
+  nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.35s var(--ease), transform 0.35s var(--ease), visibility 0s linear 0.35s;
+  }
+  .abierto nav {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition-delay: 0s;
+  }
+
+  .links {
+    display: grid;
+    list-style: none;
+    margin: 0;
+    padding: 1rem var(--gutter) 2rem;
+  }
+  .links li + li { border-top: 1px solid var(--line); }
+  .links a {
+    display: block;
+    padding-block: 1rem;
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    color: var(--text);
+    transition: color 0.3s var(--ease);
+  }
+  .links a:hover { color: var(--accent-soft); }
+
+  /* ---- desktop: links en línea ---- */
+  @media (min-width: 900px) {
+    .toggle { display: none; }
+    nav {
+      position: static;
+      visibility: visible;
+      opacity: 1;
+      transform: none;
+      background: none;
+      border: 0;
+      transition: none;
+    }
+    .links {
+      display: flex;
+      gap: 2.2rem;
+      padding: 0;
+    }
+    .links li + li { border: 0; }
+    .links a {
+      position: relative;
+      padding-block: 0.3rem;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 450;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+    .links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background: var(--accent-soft);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s var(--ease);
+    }
+    .links a:hover { color: var(--text); }
+    .links a:hover::after { transform: scaleX(1); }
+  }
+</style>

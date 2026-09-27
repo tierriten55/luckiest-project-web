@@ -1,0 +1,51 @@
+---
+// Título de bodega + grilla de sus vinos.
+import VinoCard from './VinoCard.astro';
+import type { Vino } from '../lib/vinos';
+
+interface Props {
+  id?: string;
+  nombre: string;
+  vinos: Vino[];
+}
+const { id, nombre, vinos } = Astro.props;
+---
+
+<div class="grupo" id={id}>
+  <div class="head" data-reveal>
+    <h3 class="nombre">{nombre}</h3>
+    <span class="linea" aria-hidden="true"></span>
+    <span class="cuenta">{vinos.length} {vinos.length === 1 ? 'vino' : 'vinos'}</span>
+  </div>
+  <ul class="grid-vinos">
+    {vinos.map((v) => <VinoCard vino={v} />)}
+  </ul>
+</div>
+
+<style>
+  .grupo + .grupo { margin-top: clamp(4rem, 10vw, 6rem); }
+  .head {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: clamp(1.75rem, 4vw, 2.5rem);
+  }
+  .nombre {
+    font-size: clamp(1.7rem, 5vw, 2.2rem);
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .linea {
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+    transform: translateY(-0.3rem);
+  }
+  .cuenta {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    white-space: nowrap;
+  }
+</style>

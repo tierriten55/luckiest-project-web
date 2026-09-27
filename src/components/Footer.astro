@@ -1,0 +1,55 @@
+---
+import sitio from '../data/sitio.json';
+import { preciosActualizadosAl } from '../lib/vinos';
+
+const anio = new Date().getFullYear();
+const fecha = preciosActualizadosAl?.trim() || 'a confirmar';
+const ig = sitio.instagram;
+const igPendiente = !ig.url || ig.usuario.startsWith('TODO');
+---
+
+<footer class="footer">
+  <div class="container inner">
+    <p class="brand">{sitio.marca}</p>
+    <hr class="rule" />
+    <p class="precios">Precios actualizados al: {fecha}</p>
+    <p class="ig">
+      {igPendiente ? (
+        <span class="placeholder">Instagram: @{ig.usuario} (TODO: completar en sitio.json)</span>
+      ) : (
+        <a href={ig.url} target="_blank" rel="noopener noreferrer">Instagram · @{ig.usuario}</a>
+      )}
+    </p>
+    <p class="copy">© {anio} {sitio.marca}. Beber con moderación. Prohibida su venta a menores de 18 años.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--line);
+    padding-block: 4rem 3rem;
+    text-align: center;
+  }
+  .inner {
+    display: grid;
+    justify-items: center;
+    gap: 1.1rem;
+  }
+  .brand {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    letter-spacing: 0.02em;
+  }
+  .precios, .ig {
+    font-size: 0.85rem;
+    color: var(--text-soft);
+  }
+  .ig a { transition: color 0.3s var(--ease); }
+  .ig a:hover { color: var(--accent-soft); }
+  .copy {
+    margin-top: 1rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--text-faint);
+  }
+</style>

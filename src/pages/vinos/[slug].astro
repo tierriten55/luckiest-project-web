@@ -1,0 +1,192 @@
+---
+import Base from '../../layouts/Base.astro';
+import VinoImagen from '../../components/VinoImagen.astro';
+import VinoCard from '../../components/VinoCard.astro';
+import {
+  vinos,
+  vinosDe,
+  nombreBodega,
+  formatearPrecio,
+  esPlaceholder,
+  type Vino,
+} from '../../lib/vinos';
+
+export function getStaticPaths() {
+  return vinos.map((vino) => ({ params: { slug: vino.slug }, props: { vino } }));
+}
+
+interface Props {
+  vino: Vino;
+}
+const { vino } = Astro.props;
+const bodega = nombreBodega(vino.bodega);
+const otros = vinosDe(vino.bodega).filter((v) => v.slug !== vino.slug);
+
+const datos = [
+  { label: 'Bodega', valor: bodega },
+  { label: 'Cepa', valor: vino.cepa },
+  ...(vino.anio ? [{ label: 'Año', valor: String(vino.anio) }] : []),
+];
+
+const textos = [
+  { titulo: 'Descripción', texto: vino.descripcion },
+  { titulo: 'Notas de cata', texto: vino.notasDeCata },
+  { titulo: 'Maridaje', texto: vino.maridaje },
+];
+
+const titulo = vino.anio ? `${vino.nombre} ${vino.anio}` : vino.nombre;
+const descripcionMeta = esPlaceholder(vino.descripcion)
+  ? `${vino.nombre} — ${vino.cepa} de ${bodega}.`
+  : vino.descripcion;
+---
+
+<Base title={titulo} description={descripcionMeta}>
+  <article class="ficha container">
+    <a href={`/#${vino.bodega}`} class="volver eyebrow">
+      <svg viewBox="0 0 20 12" width="18" height="11" aria-hidden="true"><path d="M19 6H2M7 1 2 6l5 5" fill="none" stroke="currentColor" stroke-width="1" /></svg>
+      Volver al catálogo
+    </a>
+
+    <div class="layout">
+      <div class="foto" data-reveal>
+        <VinoImagen vino={vino} eager />
+      </div>
+
+      <div class="info">
+        <header class="cabecera" data-reveal>
+          <p class="eyebrow">{bodega}</p>
+          <h1 class="nombre">{vino.nombre}</h1>
+          <p class:list={['precio', { pendiente: vino.precio == null }]}>{formatearPrecio(vino.precio)}</p>
+        </header>
+
+        <dl class="datos" data-reveal>
+          {datos.map((d) => (
+            <div>
+              <dt class="eyebrow">{d.label}</dt>
+              <dd>{d.valor}</dd>
+            </div>
+          ))}
+        </dl>
+
+        {textos.map((t) => (
+          <section class="bloque" data-reveal>
+            <h2 class="eyebrow">{t.titulo}</h2>
+            <p class:list={{ placeholder: esPlaceholder(t.texto) }}>{t.texto}</p>
+          </section>
+        ))}
+      </div>
+    </div>
+  </article>
+
+  {otros.length > 0 && (
+    <section class="section otros">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="eyebrow">{bodega}</p>
+          <h2 class="section-title">Otros vinos de esta bodega</h2>
+          <hr class="rule" />
+        </header>
+        <ul class="grid-vinos">
+          {otros.map((v) => <VinoCard vino={v} />)}
+        </ul>
+      </div>
+    </section>
+  )}
+</Base>
+
+<style>
+  .ficha {
+    padding-block: 2rem clamp(4.5rem, 12vw, 7rem);
+  }
+
+  .volver {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding-block: 0.5rem;
+    margin-bottom: clamp(1.5rem, 4vw, 3rem);
+    transition: color 0.3s var(--ease);
+  }
+  .volver svg { transition: transform 0.4s var(--ease); }
+  .volver:hover { color: var(--text); }
+  .volver:hover svg { transform: translateX(-4px); }
+
+  .layout {
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 5rem);
+  }
+
+  .foto {
+    width: 100%;
+    max-width: 440px;
+    margin-inline: auto;
+  }
+
+  .info {
+    display: grid;
+    gap: 2.5rem;
+    align-content: start;
+  }
+
+  .cabecera {
+    display: grid;
+    gap: 1rem;
+  }
+  .nombre {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 400;
+  }
+  .precio {
+    font-size: 1.35rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+  .precio.pendiente {
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--text-faint);
+  }
+
+  .datos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    gap: 1.25rem 2rem;
+    margin: 0;
+    padding-block: 1.5rem;
+    border-block: 1px solid var(--line);
+  }
+  .datos div { display: grid; gap: 0.35rem; }
+  .datos dt { font-size: 0.62rem; color: var(--text-faint); }
+  .datos dd {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+  }
+
+  .bloque {
+    display: grid;
+    gap: 0.75rem;
+  }
+  .bloque h2 { font-family: var(--font-sans); color: var(--accent-soft); }
+  .bloque p {
+    color: var(--text-soft);
+    line-height: 1.8;
+    max-width: 60ch;
+  }
+  .bloque p.placeholder { color: var(--text-faint); }
+
+  .otros { border-top: 1px solid var(--line); }
+
+  @media (min-width: 900px) {
+    .layout {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      align-items: start;
+    }
+    .foto {
+      position: sticky;
+      top: calc(var(--nav-h) + 2rem);
+      max-width: none;
+    }
+    .info { padding-top: 1rem; }
+  }
+</style>

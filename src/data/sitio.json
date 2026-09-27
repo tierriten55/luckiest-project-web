@@ -1,0 +1,18 @@
+{
+  "marca": "Luckiest Project",
+  "hero": {
+    "frase": "TODO: tu frase corta acá. Ej.: vinos que se eligen con calma y se comparten sin apuro."
+  },
+  "nosotros": {
+    "titulo": "Nosotros",
+    "parrafos": [
+      "TODO (reemplazar): Luckiest Project nació de algo simple: las ganas de compartir los vinos que más disfrutamos. Botellas que abrimos en la mesa de casa, con amigos, sin ceremonias pero con mucho respeto por lo que hay adentro.",
+      "TODO (reemplazar): Elegimos cada etiqueta una por una. Nos interesan las bodegas que trabajan con paciencia, los viñedos con historia y los vinos que tienen algo para contar.",
+      "TODO (reemplazar): Si tenés dudas sobre qué elegir o querés una recomendación para una ocasión especial, escribinos. Nos encanta hablar de vino."
+    ]
+  },
+  "instagram": {
+    "usuario": "TODO_usuario",
+    "url": ""
+  }
+}

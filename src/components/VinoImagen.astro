@@ -1,0 +1,41 @@
+---
+import BotellaPlaceholder from './BotellaPlaceholder.astro';
+import { fotoDe, type Vino } from '../lib/vinos';
+
+interface Props {
+  vino: Vino;
+  eager?: boolean;
+}
+const { vino, eager = false } = Astro.props;
+const foto = fotoDe(vino.slug);
+---
+
+<div class="marco">
+  {foto ? (
+    <img
+      src={foto}
+      alt={vino.nombre}
+      width="600"
+      height="800"
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+    />
+  ) : (
+    <BotellaPlaceholder nombre={vino.nombre} slug={vino.slug} />
+  )}
+</div>
+
+<style>
+  .marco {
+    aspect-ratio: 3 / 4;
+    width: 100%;
+    overflow: hidden;
+    background: var(--bg-elev);
+  }
+  .marco > :global(*) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.1s var(--ease);
+  }
+</style>

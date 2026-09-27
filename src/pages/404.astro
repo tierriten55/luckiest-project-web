@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Página no encontrada">
+  <section class="section container nf">
+    <p class="eyebrow">Error 404</p>
+    <h1 class="section-title">Esta botella no está en la cava</h1>
+    <hr class="rule" />
+    <a href="/" class="eyebrow volver">Volver al catálogo</a>
+  </section>
+</Base>
+
+<style>
+  .nf {
+    min-height: 60svh;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  .volver:hover { color: var(--text); }
+</style>
