@@ -1,5 +1,5 @@
 {
-  "preciosActualizadosAl": "",
+  "preciosActualizadosAl": "12/10/2026",
   "bodegas": [
     {
       "id": "catena-zapata",
@@ -12,23 +12,8 @@
       "seccion": "recomendados"
     },
     {
-      "id": "el-enemigo",
-      "nombre": "El Enemigo",
-      "seccion": "recomendados"
-    },
-    {
       "id": "bressia",
       "nombre": "Bressia",
-      "seccion": "bodega"
-    },
-    {
-      "id": "salentein",
-      "nombre": "Salentein",
-      "seccion": "bodega"
-    },
-    {
-      "id": "zuccardi",
-      "nombre": "Zuccardi",
       "seccion": "bodega"
     }
   ],
@@ -39,7 +24,7 @@
       "bodega": "catena-zapata",
       "cepa": "Malbec",
       "anio": null,
-      "precio": null,
+      "precio": 61000,
       "descripcion": "TODO: descripción del vino.",
       "notasDeCata": "TODO: notas de cata (vista, nariz, boca).",
       "maridaje": "TODO: con qué platos acompañarlo."
@@ -50,7 +35,7 @@
       "bodega": "catena-zapata",
       "cepa": "Cabernet Sauvignon",
       "anio": null,
-      "precio": null,
+      "precio": 59000,
       "descripcion": "TODO: descripción del vino.",
       "notasDeCata": "TODO: notas de cata (vista, nariz, boca).",
       "maridaje": "TODO: con qué platos acompañarlo."
@@ -61,7 +46,7 @@
       "bodega": "catena-zapata",
       "cepa": "Chardonnay",
       "anio": null,
-      "precio": null,
+      "precio": 21000,
       "descripcion": "TODO: descripción del vino.",
       "notasDeCata": "TODO: notas de cata (vista, nariz, boca).",
       "maridaje": "TODO: con qué platos acompañarlo."
@@ -72,7 +57,7 @@
       "bodega": "luca",
       "cepa": "Blend",
       "anio": 2022,
-      "precio": null,
+      "precio": 49000,
       "descripcion": "TODO: descripción del vino.",
       "notasDeCata": "TODO: notas de cata (vista, nariz, boca).",
       "maridaje": "TODO: con qué platos acompañarlo."
@@ -83,51 +68,18 @@
       "bodega": "luca",
       "cepa": "Malbec",
       "anio": 2022,
-      "precio": null,
+      "precio": 31000,
       "descripcion": "TODO: descripción del vino.",
       "notasDeCata": "TODO: notas de cata (vista, nariz, boca).",
       "maridaje": "TODO: con qué platos acompañarlo."
     },
     {
-      "slug": "laborde-double-select-syrah",
-      "nombre": "Laborde Double Select Syrah",
+      "slug": "luca-old-vine-pinot-noir",
+      "nombre": "Old Vine Pinot Noir",
       "bodega": "luca",
-      "cepa": "Syrah",
+      "cepa": "Pinot Noir",
       "anio": null,
-      "precio": null,
-      "descripcion": "TODO: descripción del vino.",
-      "notasDeCata": "TODO: notas de cata (vista, nariz, boca).",
-      "maridaje": "TODO: con qué platos acompañarlo."
-    },
-    {
-      "slug": "gran-enemigo",
-      "nombre": "Gran Enemigo",
-      "bodega": "el-enemigo",
-      "cepa": "Blend",
-      "anio": null,
-      "precio": null,
-      "descripcion": "TODO: descripción del vino.",
-      "notasDeCata": "TODO: notas de cata (vista, nariz, boca).",
-      "maridaje": "TODO: con qué platos acompañarlo."
-    },
-    {
-      "slug": "el-enemigo-malbec",
-      "nombre": "El Enemigo Malbec",
-      "bodega": "el-enemigo",
-      "cepa": "Malbec",
-      "anio": null,
-      "precio": null,
-      "descripcion": "TODO: descripción del vino.",
-      "notasDeCata": "TODO: notas de cata (vista, nariz, boca).",
-      "maridaje": "TODO: con qué platos acompañarlo."
-    },
-    {
-      "slug": "ultima-hoja",
-      "nombre": "Última Hoja",
-      "bodega": "bressia",
-      "cepa": "Blend",
-      "anio": null,
-      "precio": null,
+      "precio": 30000,
       "descripcion": "TODO: descripción del vino.",
       "notasDeCata": "TODO: notas de cata (vista, nariz, boca).",
       "maridaje": "TODO: con qué platos acompañarlo."
@@ -138,128 +90,29 @@
       "bodega": "bressia",
       "cepa": "Blend",
       "anio": null,
-      "precio": null,
+      "precio": 59000,
       "descripcion": "TODO: descripción del vino.",
       "notasDeCata": "TODO: notas de cata (vista, nariz, boca).",
       "maridaje": "TODO: con qué platos acompañarlo."
     },
     {
-      "slug": "bressia-pinot-noir",
-      "nombre": "Bressia Pinot Noir",
+      "slug": "piel-negra",
+      "nombre": "Piel Negra",
       "bodega": "bressia",
-      "cepa": "Pinot Noir",
+      "cepa": "",
       "anio": null,
-      "precio": null,
+      "precio": 39000,
       "descripcion": "TODO: descripción del vino.",
       "notasDeCata": "TODO: notas de cata (vista, nariz, boca).",
       "maridaje": "TODO: con qué platos acompañarlo."
     },
     {
-      "slug": "gran-vu-blend",
-      "nombre": "Gran VU Blend",
-      "bodega": "salentein",
-      "cepa": "Blend",
+      "slug": "profundo",
+      "nombre": "Profundo",
+      "bodega": "bressia",
+      "cepa": "",
       "anio": null,
-      "precio": null,
-      "descripcion": "TODO: descripción del vino.",
-      "notasDeCata": "TODO: notas de cata (vista, nariz, boca).",
-      "maridaje": "TODO: con qué platos acompañarlo."
-    },
-    {
-      "slug": "primus-malbec-2020",
-      "nombre": "Primus Malbec",
-      "bodega": "salentein",
-      "cepa": "Malbec",
-      "anio": 2020,
-      "precio": null,
-      "descripcion": "TODO: descripción del vino.",
-      "notasDeCata": "TODO: notas de cata (vista, nariz, boca).",
-      "maridaje": "TODO: con qué platos acompañarlo."
-    },
-    {
-      "slug": "primus-malbec-2025",
-      "nombre": "Primus Malbec",
-      "bodega": "salentein",
-      "cepa": "Malbec",
-      "anio": 2025,
-      "precio": null,
-      "descripcion": "TODO: descripción del vino.",
-      "notasDeCata": "TODO: notas de cata (vista, nariz, boca).",
-      "maridaje": "TODO: con qué platos acompañarlo."
-    },
-    {
-      "slug": "primus-cabernet-sauvignon-2017",
-      "nombre": "Primus Cabernet Sauvignon",
-      "bodega": "salentein",
-      "cepa": "Cabernet Sauvignon",
-      "anio": 2017,
-      "precio": null,
-      "descripcion": "TODO: descripción del vino.",
-      "notasDeCata": "TODO: notas de cata (vista, nariz, boca).",
-      "maridaje": "TODO: con qué platos acompañarlo."
-    },
-    {
-      "slug": "primus-single-vineyard",
-      "nombre": "Primus Single Vineyard",
-      "bodega": "salentein",
-      "cepa": "Malbec",
-      "anio": null,
-      "precio": null,
-      "descripcion": "TODO: descripción del vino.",
-      "notasDeCata": "TODO: notas de cata (vista, nariz, boca).",
-      "maridaje": "TODO: con qué platos acompañarlo."
-    },
-    {
-      "slug": "las-tunas-malbec",
-      "nombre": "Las Tunas Malbec",
-      "bodega": "salentein",
-      "cepa": "Malbec",
-      "anio": null,
-      "precio": null,
-      "descripcion": "TODO: descripción del vino.",
-      "notasDeCata": "TODO: notas de cata (vista, nariz, boca).",
-      "maridaje": "TODO: con qué platos acompañarlo."
-    },
-    {
-      "slug": "la-pampa-97-malbec",
-      "nombre": "La Pampa '97 Malbec",
-      "bodega": "salentein",
-      "cepa": "Malbec",
-      "anio": null,
-      "precio": null,
-      "descripcion": "TODO: descripción del vino.",
-      "notasDeCata": "TODO: notas de cata (vista, nariz, boca).",
-      "maridaje": "TODO: con qué platos acompañarlo."
-    },
-    {
-      "slug": "aluvional-los-chacayes-2017",
-      "nombre": "Aluvional Los Chacayes",
-      "bodega": "zuccardi",
-      "cepa": "Malbec",
-      "anio": 2017,
-      "precio": null,
-      "descripcion": "TODO: descripción del vino.",
-      "notasDeCata": "TODO: notas de cata (vista, nariz, boca).",
-      "maridaje": "TODO: con qué platos acompañarlo."
-    },
-    {
-      "slug": "aluvional-paraje-altamira-2020",
-      "nombre": "Aluvional Paraje Altamira",
-      "bodega": "zuccardi",
-      "cepa": "Malbec",
-      "anio": 2020,
-      "precio": null,
-      "descripcion": "TODO: descripción del vino.",
-      "notasDeCata": "TODO: notas de cata (vista, nariz, boca).",
-      "maridaje": "TODO: con qué platos acompañarlo."
-    },
-    {
-      "slug": "aluvional-gualtallary-2020",
-      "nombre": "Aluvional Gualtallary",
-      "bodega": "zuccardi",
-      "cepa": "Malbec",
-      "anio": 2020,
-      "precio": null,
+      "precio": 28000,
       "descripcion": "TODO: descripción del vino.",
       "notasDeCata": "TODO: notas de cata (vista, nariz, boca).",
       "maridaje": "TODO: con qué platos acompañarlo."

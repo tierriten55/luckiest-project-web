@@ -24,7 +24,7 @@ const otros = vinosDe(vino.bodega).filter((v) => v.slug !== vino.slug);
 
 const datos = [
   { label: 'Bodega', valor: bodega },
-  { label: 'Cepa', valor: vino.cepa },
+  ...(vino.cepa ? [{ label: 'Cepa', valor: vino.cepa }] : []),
   ...(vino.anio ? [{ label: 'Año', valor: String(vino.anio) }] : []),
 ];
 
@@ -36,7 +36,7 @@ const textos = [
 
 const titulo = vino.anio ? `${vino.nombre} ${vino.anio}` : vino.nombre;
 const descripcionMeta = esPlaceholder(vino.descripcion)
-  ? `${vino.nombre} — ${vino.cepa} de ${bodega}.`
+  ? `${vino.nombre}${vino.cepa ? ` — ${vino.cepa}` : ''} de ${bodega}.`
   : vino.descripcion;
 ---
 

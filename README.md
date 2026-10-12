@@ -50,9 +50,9 @@ En `src/data/vinos.json`, dentro de `"vinos": [ ... ]`, copiá un bloque existen
 
 ```json
 {
-  "slug": "zuccardi-q-malbec-2021",
-  "nombre": "Zuccardi Q Malbec",
-  "bodega": "zuccardi",
+  "slug": "bressia-monteagrelo-2021",
+  "nombre": "Monteagrelo",
+  "bodega": "bressia",
   "cepa": "Malbec",
   "anio": 2021,
   "precio": null,
@@ -62,8 +62,9 @@ En `src/data/vinos.json`, dentro de `"vinos": [ ... ]`, copiá un bloque existen
 }
 ```
 
-- **slug**: el nombre para la dirección web (`/vinos/zuccardi-q-malbec-2021`). Usá minúsculas, sin tildes ni espacios (con guiones), y que no se repita. También es el nombre de la foto.
-- **bodega**: tiene que ser uno de estos: `catena-zapata`, `luca`, `el-enemigo`, `bressia`, `salentein`, `zuccardi`.
+- **slug**: el nombre para la dirección web (`/vinos/bressia-monteagrelo-2021`). Usá minúsculas, sin tildes ni espacios (con guiones), y que no se repita. También es el nombre de la foto.
+- **bodega**: tiene que ser uno de estos: `catena-zapata`, `luca`, `bressia` (o una bodega nueva que agregues, ver abajo).
+- **cepa**: si no la sabés todavía, dejala vacía (`""`) y no se muestra.
 - **anio**: el número del año, o `null` si no aplica.
 
 Si te equivocás en un slug repetido o en una bodega, `npm run build` te avisa con un error que dice qué vino es.
