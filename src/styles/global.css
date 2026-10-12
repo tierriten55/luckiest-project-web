@@ -6,6 +6,7 @@
 :root {
   --bg: #13100e;            /* casi negro cálido */
   --bg-elev: #1b1715;       /* superficies (fondos de foto) */
+  --bg-alt: #171311;        /* fondo alternado de secciones */
   --line: #2e2723;          /* líneas finas */
   --text: #eee4d3;          /* crema */
   --text-soft: #b5a894;     /* crema atenuado */
@@ -34,7 +35,7 @@
 
 html {
   -webkit-text-size-adjust: 100%;
-  scroll-padding-top: calc(var(--nav-h) + 1rem);
+  scroll-padding-top: calc(var(--nav-h) - 1px);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -133,23 +134,24 @@ p { margin: 0; }
   font-weight: 400;
 }
 
-/* ---------- grilla de vinos ---------- */
+/* ---------- grilla de vinos ----------
+   mobile: una tarjeta horizontal por fila
+   tablet/desktop: 3 columnas (una fila por bodega) */
 
 .grid-vinos {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(2rem, 5vw, 3rem) clamp(1rem, 3vw, 2rem);
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 @media (min-width: 720px) {
-  .grid-vinos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
-
-@media (min-width: 1080px) {
-  .grid-vinos { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .grid-vinos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
 }
 
 /* ---------- aparición suave al hacer scroll ---------- */

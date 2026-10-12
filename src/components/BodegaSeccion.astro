@@ -1,0 +1,72 @@
+---
+// Sección de una bodega: encabezado numerado + sus vinos.
+import VinoCard from './VinoCard.astro';
+import { vinosDe, type Bodega } from '../lib/vinos';
+
+interface Props {
+  bodega: Bodega;
+  numero: number;
+}
+const { bodega, numero } = Astro.props;
+const vinos = vinosDe(bodega.id);
+---
+
+<section class:list={['bodega', { alterna: numero % 2 === 1 }]} id={bodega.id}>
+  <div class="container">
+    <header class="head" data-reveal>
+      <span class="num">{String(numero).padStart(2, '0')}</span>
+      <div class="titulos">
+        <p class="eyebrow">Bodega</p>
+        <h2 class="section-title">{bodega.nombre}</h2>
+      </div>
+      <span class="cuenta">{vinos.length} {vinos.length === 1 ? 'vino' : 'vinos'}</span>
+    </header>
+    <ul class="grid-vinos">
+      {vinos.map((v) => <VinoCard vino={v} />)}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .bodega {
+    padding-block: clamp(4.5rem, 11vw, 7.5rem);
+    border-top: 1px solid var(--line);
+  }
+  .bodega.alterna { background: var(--bg-alt); }
+  .bodega .container { max-width: 1040px; }
+
+  .head {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: end;
+    column-gap: 1.25rem;
+    row-gap: 0.75rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: clamp(2rem, 5vw, 3.5rem);
+    border-bottom: 1px solid var(--line);
+  }
+  .num {
+    font-family: var(--font-serif);
+    font-size: clamp(2.6rem, 8vw, 4rem);
+    font-style: italic;
+    line-height: 1;
+    color: var(--accent-soft);
+    opacity: 0.85;
+  }
+  .titulos { display: grid; gap: 0.6rem; }
+  .cuenta {
+    grid-column: 1 / -1;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  @media (min-width: 720px) {
+    .head {
+      grid-template-columns: auto 1fr auto;
+      column-gap: 2rem;
+    }
+    .cuenta { grid-column: auto; padding-bottom: 0.5rem; }
+  }
+</style>

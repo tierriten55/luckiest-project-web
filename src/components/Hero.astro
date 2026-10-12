@@ -1,6 +1,6 @@
 ---
 import sitio from '../data/sitio.json';
-import { esPlaceholder } from '../lib/vinos';
+import { bodegas, esPlaceholder } from '../lib/vinos';
 const frase = sitio.hero.frase;
 ---
 
@@ -10,22 +10,31 @@ const frase = sitio.hero.frase;
     <h1 class="titulo" data-reveal>{sitio.marca}</h1>
     <hr class="rule" data-reveal />
     <p class:list={['frase', { placeholder: esPlaceholder(frase) }]} data-reveal>{frase}</p>
-    <a href="#recomendados" class="cta eyebrow" data-reveal>
-      Ver catálogo
-      <svg viewBox="0 0 12 20" width="10" height="16" aria-hidden="true"><path d="M6 1v17M1 13l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1" /></svg>
-    </a>
+
+    <nav class="indice" aria-label="Bodegas" data-reveal>
+      <ol>
+        {bodegas.map((b, i) => (
+          <li>
+            <a href={`#${b.id}`}>
+              <span class="num">{String(i + 1).padStart(2, '0')}</span>
+              <span class="nombre">{b.nombre}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
   </div>
 </section>
 
 <style>
   .hero {
-    min-height: calc(88svh - var(--nav-h));
+    min-height: calc(92svh - var(--nav-h));
     display: grid;
     place-items: center;
     text-align: center;
-    padding-block: 5rem;
+    padding-block: 4.5rem;
     background:
-      radial-gradient(ellipse 60% 50% at 50% 45%, rgba(142, 42, 58, 0.10), transparent 70%);
+      radial-gradient(ellipse 60% 50% at 50% 40%, rgba(142, 42, 58, 0.10), transparent 70%);
   }
   .inner {
     display: grid;
@@ -47,16 +56,51 @@ const frase = sitio.hero.frase;
     color: var(--text-soft);
   }
   .frase.placeholder { color: var(--text-faint); }
-  .cta {
-    margin-top: 2rem;
-    display: inline-grid;
-    justify-items: center;
-    gap: 0.7rem;
+
+  .indice { margin-top: clamp(1.5rem, 5vw, 3rem); width: 100%; }
+  .indice ol {
+    display: grid;
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 22rem;
+    border-top: 1px solid var(--line);
+  }
+  .indice li { border-bottom: 1px solid var(--line); }
+  .indice a {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.9rem;
+    padding-block: 0.95rem;
     transition: color 0.3s var(--ease);
   }
-  .cta:hover { color: var(--text); }
-  .cta svg { transition: transform 0.5s var(--ease); }
-  .cta:hover svg { transform: translateY(4px); }
+  .num {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    color: var(--accent-soft);
+  }
+  .nombre {
+    font-family: var(--font-serif);
+    font-size: 1.45rem;
+    color: var(--text-soft);
+    transition: color 0.3s var(--ease);
+  }
+  .indice a:hover .nombre { color: var(--text); }
+
+  @media (min-width: 720px) {
+    .indice ol {
+      grid-template-columns: repeat(3, auto);
+      justify-content: center;
+      max-width: none;
+      border: 0;
+      gap: 0;
+    }
+    .indice li { border: 0; }
+    .indice li + li { border-left: 1px solid var(--line); }
+    .indice a { padding: 0.4rem 2.5rem; }
+    .nombre { font-size: 1.6rem; }
+  }
 
   .inner > :nth-child(2) { transition-delay: 0.08s; }
   .inner > :nth-child(3) { transition-delay: 0.16s; }

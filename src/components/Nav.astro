@@ -1,10 +1,9 @@
 ---
 import sitio from '../data/sitio.json';
-import { bodegasPropias } from '../lib/vinos';
+import { bodegas } from '../lib/vinos';
 
 const links = [
-  { href: '/#recomendados', label: 'Recomendados' },
-  ...bodegasPropias.map((b) => ({ href: `/#${b.id}`, label: b.nombre })),
+  ...bodegas.map((b) => ({ href: `/#${b.id}`, label: b.nombre })),
   { href: '/#nosotros', label: 'Nosotros' },
 ];
 ---

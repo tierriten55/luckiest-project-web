@@ -3,18 +3,15 @@
   "bodegas": [
     {
       "id": "catena-zapata",
-      "nombre": "Catena Zapata",
-      "seccion": "recomendados"
+      "nombre": "Catena Zapata"
     },
     {
       "id": "luca",
-      "nombre": "Luca",
-      "seccion": "recomendados"
+      "nombre": "Luca"
     },
     {
       "id": "bressia",
-      "nombre": "Bressia",
-      "seccion": "bodega"
+      "nombre": "Bressia"
     }
   ],
   "vinos": [
@@ -52,22 +49,22 @@
       "maridaje": "TODO: con qué platos acompañarlo."
     },
     {
-      "slug": "beso-de-dante-2022",
+      "slug": "beso-de-dante",
       "nombre": "Beso de Dante",
       "bodega": "luca",
       "cepa": "Blend",
-      "anio": 2022,
+      "anio": null,
       "precio": 49000,
       "descripcion": "TODO: descripción del vino.",
       "notasDeCata": "TODO: notas de cata (vista, nariz, boca).",
       "maridaje": "TODO: con qué platos acompañarlo."
     },
     {
-      "slug": "luca-old-vine-malbec-2022",
+      "slug": "luca-old-vine-malbec",
       "nombre": "Old Vine Malbec",
       "bodega": "luca",
       "cepa": "Malbec",
-      "anio": 2022,
+      "anio": null,
       "precio": 31000,
       "descripcion": "TODO: descripción del vino.",
       "notasDeCata": "TODO: notas de cata (vista, nariz, boca).",

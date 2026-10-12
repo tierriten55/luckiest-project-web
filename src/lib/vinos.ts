@@ -5,7 +5,6 @@ import datos from '../data/vinos.json';
 export type Bodega = {
   id: string;
   nombre: string;
-  seccion: 'recomendados' | 'bodega';
 };
 
 export type Vino = {
@@ -23,9 +22,6 @@ export type Vino = {
 export const bodegas = datos.bodegas as Bodega[];
 export const vinos = datos.vinos as Vino[];
 export const preciosActualizadosAl: string = datos.preciosActualizadosAl;
-
-export const bodegasRecomendadas = bodegas.filter((b) => b.seccion === 'recomendados');
-export const bodegasPropias = bodegas.filter((b) => b.seccion !== 'recomendados');
 
 export function vinosDe(bodegaId: string): Vino[] {
   return vinos.filter((v) => v.bodega === bodegaId);

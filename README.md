@@ -65,19 +65,16 @@ En `src/data/vinos.json`, dentro de `"vinos": [ ... ]`, copiá un bloque existen
 - **slug**: el nombre para la dirección web (`/vinos/bressia-monteagrelo-2021`). Usá minúsculas, sin tildes ni espacios (con guiones), y que no se repita. También es el nombre de la foto.
 - **bodega**: tiene que ser uno de estos: `catena-zapata`, `luca`, `bressia` (o una bodega nueva que agregues, ver abajo).
 - **cepa**: si no la sabés todavía, dejala vacía (`""`) y no se muestra.
-- **anio**: el número del año, o `null` si no aplica.
+- **anio**: el número del año (ej. `2022`), o `null` mientras no esté confirmado. Con `null` no se muestra.
 
 Si te equivocás en un slug repetido o en una bodega, `npm run build` te avisa con un error que dice qué vino es.
 
-**Nueva bodega:** agregala en `"bodegas"` con un `id` (sin tildes ni espacios), su `nombre` y la `seccion`:
-
-- `"recomendados"`: aparece dentro de Recomendados.
-- `"bodega"`: tiene su propia sección y su propio link en el menú.
+**Nueva bodega:** agregala en `"bodegas"` con un `id` (sin tildes ni espacios) y su `nombre`. Aparece sola como una sección nueva, con su link en el menú. El orden de `"bodegas"` es el orden de las secciones en la página.
 
 ## Cómo cargar una foto
 
 1. Prepará la foto en **formato vertical 3:4** (por ejemplo, 900 × 1200 px) y en formato **.webp**. Para convertirla podés usar [squoosh.app](https://squoosh.app), que es gratis y funciona en el navegador.
-2. Nombrala exactamente igual que el **slug** del vino: `conjuro.webp`, `primus-malbec-2020.webp`, etc.
+2. Nombrala exactamente igual que el **slug** del vino: `conjuro.webp`, `beso-de-dante.webp`, etc.
 3. Guardala en la carpeta `public/vinos/`.
 
 Listo: en ese vino, la foto reemplaza sola a la botella dibujada, tanto en la tarjeta como en su ficha. Mientras estés con `npm run dev`, puede que tengas que recargar la página.

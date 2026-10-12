@@ -176,6 +176,12 @@ const descripcionMeta = esPlaceholder(vino.descripcion)
   .bloque p.placeholder { color: var(--text-faint); }
 
   .otros { border-top: 1px solid var(--line); }
+  /* columnas de hasta 320px alineadas a la izquierda: sin huecos con 2 vinos */
+  @media (min-width: 720px) {
+    .otros .grid-vinos {
+      grid-template-columns: repeat(auto-fill, minmax(220px, 320px));
+    }
+  }
 
   @media (min-width: 900px) {
     .layout {

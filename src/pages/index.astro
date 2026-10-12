@@ -1,47 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
-import BodegaGrupo from '../components/BodegaGrupo.astro';
-import VinoCard from '../components/VinoCard.astro';
+import BodegaSeccion from '../components/BodegaSeccion.astro';
 import sitio from '../data/sitio.json';
-import { bodegasRecomendadas, bodegasPropias, vinosDe, esPlaceholder } from '../lib/vinos';
+import { bodegas, esPlaceholder } from '../lib/vinos';
 ---
 
 <Base>
   <Hero />
 
-  <section class="section" id="recomendados">
-    <div class="container">
-      <header class="section-head" data-reveal>
-        <p class="eyebrow">Selección de la casa</p>
-        <h2 class="section-title">Recomendados</h2>
-        <hr class="rule" />
-        <ul class="indice">
-          {bodegasRecomendadas.map((b) => (
-            <li><a href={`#${b.id}`}>{b.nombre}</a></li>
-          ))}
-        </ul>
-      </header>
-      {bodegasRecomendadas.map((b) => (
-        <BodegaGrupo id={b.id} nombre={b.nombre} vinos={vinosDe(b.id)} />
-      ))}
-    </div>
-  </section>
-
-  {bodegasPropias.map((b) => (
-    <section class="section" id={b.id}>
-      <div class="container">
-        <header class="section-head" data-reveal>
-          <p class="eyebrow">Bodega</p>
-          <h2 class="section-title">{b.nombre}</h2>
-          <hr class="rule" />
-        </header>
-        <ul class="grid-vinos">
-          {vinosDe(b.id).map((v) => <VinoCard vino={v} />)}
-        </ul>
-      </div>
-    </section>
-  ))}
+  {bodegas.map((b, i) => <BodegaSeccion bodega={b} numero={i + 1} />)}
 
   <section class="section nosotros" id="nosotros">
     <div class="container angosto">
@@ -60,23 +28,7 @@ import { bodegasRecomendadas, bodegasPropias, vinosDe, esPlaceholder } from '../
 </Base>
 
 <style>
-  .indice {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 1.5rem;
-    list-style: none;
-    margin: 0.5rem 0 0;
-    padding: 0;
-  }
-  .indice a {
-    font-family: var(--font-serif);
-    font-size: 1.15rem;
-    font-style: italic;
-    color: var(--text-soft);
-    transition: color 0.3s var(--ease);
-  }
-  .indice a:hover { color: var(--accent-soft); }
-
+  .nosotros { border-top: 1px solid var(--line); }
   .angosto { max-width: 760px; }
   .texto {
     display: grid;
